@@ -42,7 +42,6 @@ public class MusicConvertUtil {
         //
         return new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, info.getMediaId())
-                .putString(MusicMetadataConstant.CUSTOM_METADATA_PAY_TYPE, info.freeType())
                 .putString(MusicMetadataConstant.CUSTOM_METADATA_TRACK_SOURCE, info.getSource())
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, info.getAlbum())
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, info.getArtist())

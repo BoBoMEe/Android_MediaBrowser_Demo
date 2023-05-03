@@ -26,8 +26,6 @@ public interface IMusicInfo {
     String getAlbumArtUrl();
     //
     String getGenre();
-    // 类型：付费 or 免费
-    String freeType();
     // 返回 ms 数
     long getDuration();
 }

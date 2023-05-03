@@ -126,9 +126,10 @@ public class MusicManager {
             return;
         }
         //相同的列表则不刷新播放队列
-        if (mPlayList != null && list.equals(mPlayList)) {
-            if (playIndex >= 0 || playIndex < mPlayList.size())
+        if (list.equals(mPlayList)) {
+            if (playIndex >= 0 && playIndex < mPlayList.size()) {
                 mMediaController.getTransportControls().playFromMediaId(list.get(playIndex).getMediaId(), null);
+            }
         }
         // 当前没有播放数据
         else {
@@ -153,8 +154,7 @@ public class MusicManager {
         if (list == null || list.isEmpty()) return;
         if (mMediaController == null) return;
         //相同的列表则不刷新播放队列
-        if (mPlayList != null && list.equals(mPlayList)) {
-        } else {
+        if (!list.equals(mPlayList)) {
             mPlayList = list;
             Bundle args = new Bundle();
             args.putParcelableArrayList(MusicPlaybackManager.KEY_MUSIC_QUEUE, MusicConvertUtil.convertToMediaMetadataList(list));
@@ -586,10 +586,11 @@ public class MusicManager {
         // PackageManager
         final PackageManager pm = mContext.getPackageManager();
         final String[] packages = pm.getPackagesForUid(uid);
-        final int N = packages.length;
-        for (int i = 0; i < N; i++) {
-            if (packages[i].equals(pkg)) {
-                return true;
+        if (null != packages) {
+            for (String aPackage : packages) {
+                if (aPackage.equals(pkg)) {
+                    return true;
+                }
             }
         }
         return false;
